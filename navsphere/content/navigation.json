@@ -156,6 +156,14 @@
           "href": "https://dash.cloudflare.com/ae7eb4bedd413a210d233c6f3ee0f544/home/domains",
           "description": "访问 dash.cloudflare.com",
           "icon": "/assets/favicon_1770352451956.png"
+        },
+        {
+          "id": "item-1770363896650",
+          "enabled": true,
+          "title": "GitHub",
+          "href": "https://github.com/",
+          "description": "Join the world&#39;s most widely adopted, AI-powered developer platform where millions of developers, businesses, and the largest open source community build software that advances humanity.",
+          "icon": "/assets/favicon_1770363890458.png"
         }
       ],
       "subCategories": [],

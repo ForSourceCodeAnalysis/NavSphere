@@ -13,19 +13,40 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
 
 function SignInContent() {
   const searchParams = useSearchParams()
   const callbackUrl = searchParams?.get('callbackUrl') || '/admin'
   const [isLoading, setIsLoading] = useState(false)
+  const [authToken, setAuthToken] = useState('')
+  const [selectedMethod, setSelectedMethod] = useState<'github' | 'credentials'>('github')
 
-  const handleSignIn = async () => {
+
+
+  const handleGithubSignIn = async () => {
     try {
       setIsLoading(true)
       await signIn('github', {
         callbackUrl,
         redirect: true,
         scope: 'repo'
+      })
+    } catch (error) {
+      setIsLoading(false)
+      console.error('登录失败:', error)
+    }
+  }
+
+  const handleCredentialsSignIn = async (e: React.FormEvent) => {
+    e.preventDefault()
+    try {
+      setIsLoading(true)
+      await signIn('credentials', {
+        authtoken: authToken,
+        callbackUrl,
+        redirect: true
       })
     } catch (error) {
       setIsLoading(false)
@@ -70,27 +91,79 @@ function SignInContent() {
                 登录管理后台
               </CardTitle>
               <CardDescription className="text-center">
-                使用 GitHub 账号登录以访问管理功能
+                请选择登录方式
               </CardDescription>
             </CardHeader>
             <CardContent className="grid gap-4">
-              <Button
-                onClick={handleSignIn}
-                className="w-full bg-[#24292F] hover:bg-[#24292F]/90 text-white"
-                disabled={isLoading}
-              >
-                {isLoading ? (
-                  <>
-                    <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
-                    登录中...
-                  </>
-                ) : (
-                  <>
-                    <Icons.github className="mr-2 h-4 w-4" />
-                    GitHub 账号登录
-                  </>
-                )}
-              </Button>
+              {/* 认证方式选择 */}
+              <div className="flex justify-center space-x-4">
+                <Button
+                  variant={selectedMethod === 'github' ? 'default' : 'outline'}
+                  size="sm"
+                  onClick={() => setSelectedMethod('github')}
+                >
+                  GitHub
+                </Button>
+                <Button
+                  variant={selectedMethod === 'credentials' ? 'default' : 'outline'}
+                  size="sm"
+                  onClick={() => setSelectedMethod('credentials')}
+                >
+                  令牌
+                </Button>
+              </div>
+
+              {/* GitHub 登录 */}
+              {selectedMethod === 'github' && (
+                <Button
+                  onClick={handleGithubSignIn}
+                  className="w-full bg-[#24292F] hover:bg-[#24292F]/90 text-white"
+                  disabled={isLoading}
+                >
+                  {isLoading ? (
+                    <>
+                      <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
+                      登录中...
+                    </>
+                  ) : (
+                    <>
+                      <Icons.github className="mr-2 h-4 w-4" />
+                      GitHub 账号登录
+                    </>
+                  )}
+                </Button>
+              )}
+
+              {/* 令牌登录 */}
+              {selectedMethod === 'credentials' && (
+                <form onSubmit={handleCredentialsSignIn} className="space-y-4">
+                  <div className="space-y-2">
+                    <Label htmlFor="authtoken">认证令牌</Label>
+                    <Input
+                      id="authtoken"
+                      type="password"
+                      value={authToken}
+                      onChange={(e: React.ChangeEvent<HTMLInputElement>) => setAuthToken(e.target.value)}
+                      placeholder="请输入认证令牌"
+                      required
+                    />
+                  </div>
+                  <Button
+                    type="submit"
+                    className="w-full"
+                    disabled={isLoading}
+                  >
+                    {isLoading ? (
+                      <>
+                        <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
+                        登录中...
+                      </>
+                    ) : (
+                      '使用令牌登录'
+                    )}
+                  </Button>
+                </form>
+              )}
             </CardContent>
             <CardFooter className="flex flex-wrap items-center justify-center gap-2">
               <div className="text-sm text-muted-foreground">
@@ -123,4 +196,4 @@ export default function SignInPage() {
       <SignInContent />
     </Suspense>
   )
-} 
+}

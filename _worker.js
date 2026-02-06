@@ -9,6 +9,9 @@ export default {
     process.env.NEXTAUTH_URL = env.NEXTAUTH_URL
     process.env.NEXTAUTH_SECRET = env.GITHUB_SECRET
 
+    // 简单的credentials token验证
+    process.env.CREDENTIALS_AUTH_TOKEN = env.CREDENTIALS_AUTH_TOKEN
+
     if (request.url.includes('/api/auth')) {
       return env.ASSETS.fetch(request)
     }

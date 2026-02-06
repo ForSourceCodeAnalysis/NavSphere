@@ -148,6 +148,14 @@
           "description": "edge 插件上传地址",
           "icon": "/assets/favicon_1768145646425.png",
           "enabled": true
+        },
+        {
+          "id": "item-1770352463204",
+          "enabled": true,
+          "title": "帐户主页 | aka | Cloudflare",
+          "href": "https://dash.cloudflare.com/ae7eb4bedd413a210d233c6f3ee0f544/home/domains",
+          "description": "访问 dash.cloudflare.com",
+          "icon": "/assets/favicon_1770352451956.png"
         }
       ],
       "subCategories": [],

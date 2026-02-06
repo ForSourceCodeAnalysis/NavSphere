@@ -66,7 +66,7 @@ const config = {
   pages: {
     signIn: '/auth/signin'
   },
-  secret: process.env.GITHUB_SECRET || process.env.AUTH_TOKEN
+  secret: process.env.GITHUB_SECRET || process.env.CREDENTIALS_AUTH_TOKEN
 } satisfies NextAuthConfig
 
 const handler = NextAuth(config)

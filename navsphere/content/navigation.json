@@ -1552,6 +1552,15 @@
           ]
         }
       ]
+    },
+    {
+      "id": "1770353971034",
+      "title": "视频",
+      "icon": "FolderKanban",
+      "description": "视频网站",
+      "enabled": true,
+      "items": [],
+      "subCategories": []
     }
   ]
 }

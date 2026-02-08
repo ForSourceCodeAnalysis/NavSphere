@@ -208,7 +208,16 @@
       "id": "9",
       "title": "AI工具包",
       "icon": "Brain",
-      "items": [],
+      "items": [
+        {
+          "id": "item-1770548649039",
+          "enabled": true,
+          "title": "Live View Page - 607 glass admin Template",
+          "href": "https://templatemo.com/live/templatemo_607_glass_admin",
+          "description": "Live view page for  607 glass admin Template, download free CSS templates for your website",
+          "icon": "/assets/favicon_1770548637193.png"
+        }
+      ],
       "subCategories": [
         {
           "id": "cbb3e33d-408b-41ba-9e9a-e0444303e3fd",

@@ -1576,7 +1576,16 @@
       "icon": "FolderKanban",
       "description": "视频网站",
       "enabled": true,
-      "items": [],
+      "items": [
+        {
+          "id": "item-1770618366644",
+          "enabled": true,
+          "title": "Getting started | Riverpod",
+          "href": "https://riverpod.dev/docs/introduction/getting_started",
+          "description": "Try Riverpod online",
+          "icon": "/assets/favicon_1770618328629.svg"
+        }
+      ],
       "subCategories": []
     }
   ]
